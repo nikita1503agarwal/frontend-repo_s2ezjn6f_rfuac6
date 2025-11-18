@@ -12,7 +12,12 @@ import { motion } from 'framer-motion'
 export default function App() {
   return (
     <ThemeProvider>
-      <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, ease: 'easeOut' }} className="min-h-screen bg-white text-zinc-900 dark:bg-gray-950 dark:text-white selection:bg-cyan-400/30">
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-cyan-500/20 selection:text-slate-900 dark:selection:bg-fuchsia-500/20 dark:selection:text-slate-50 transition-colors duration-300 ease-in-out"
+      >
         <NavBar />
         <Hero />
         <Collections />

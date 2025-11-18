@@ -3,7 +3,7 @@ import React from 'react';
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="py-10 border-t border-white/10 text-sm text-zinc-600 dark:text-zinc-400">
+    <footer className="py-10 border-t border-slate-200/70 dark:border-slate-800/70 text-sm text-slate-600 dark:text-slate-400 transition-colors duration-300 ease-in-out">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>© {year} Aurora Gallery. All rights reserved.</div>
         <nav className="flex items-center gap-6">

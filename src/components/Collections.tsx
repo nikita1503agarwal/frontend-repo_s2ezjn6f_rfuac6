@@ -34,11 +34,11 @@ const Collections: React.FC = () => {
   const filtered = useMemo(() => (active === 'All' ? items : items.filter(i => i.cat === active)), [active]);
 
   return (
-    <section id="collections" className="relative py-20">
+    <section id="collections" className="relative py-20 transition-colors duration-300 ease-in-out">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-semibold text-zinc-900 dark:text-white">Curated Collections</h2>
-          <p className="mt-3 text-zinc-600 dark:text-zinc-300">Explore evolving sets across styles and systems. Filter by mood and method.</p>
+          <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 dark:text-slate-50">Curated Collections</h2>
+          <p className="mt-3 text-slate-600 dark:text-slate-300">Explore evolving sets across styles and systems. Filter by mood and method.</p>
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -48,7 +48,7 @@ const Collections: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => setActive(f)}
-              className={`px-4 py-2 rounded-full text-sm border backdrop-blur-md transition-colors ${active === f ? 'bg-gradient-to-r from-teal-400 via-cyan-400 to-fuchsia-500 text-white border-transparent' : 'bg-white/10 dark:bg-white/5 text-zinc-700 dark:text-zinc-200 border-white/10'}`}
+              className={`px-4 py-2 rounded-full text-sm border backdrop-blur-md transition-colors ${active === f ? 'bg-gradient-to-r from-teal-400 via-sky-500 to-fuchsia-500 text-white border-transparent' : 'bg-slate-100/80 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 border-slate-200/70 dark:border-slate-800/70'}`}
             >
               {f}
             </motion.button>
@@ -64,14 +64,14 @@ const Collections: React.FC = () => {
         >
           <AnimatePresence mode="popLayout">
             {filtered.map(card => (
-              <motion.div key={card.id} layout variants={cardVariants} exit="exit" className="group rounded-2xl p-[1px] bg-gradient-to-br from-white/30 to-white/10 dark:from-white/10 dark:to-white/5">
-                <div className="rounded-2xl overflow-hidden backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 border border-white/20 transition-transform duration-200 will-change-transform group-hover:-translate-y-1 group-hover:scale-[1.02] shadow-lg">
+              <motion.div key={card.id} layout variants={cardVariants} exit="exit" className="group rounded-2xl p-[1px] bg-gradient-to-br from-white/70 to-white/30 dark:from-white/10 dark:to-white/5">
+                <div className="rounded-2xl overflow-hidden backdrop-blur-xl bg-white/70 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-700/60 transition-transform duration-200 will-change-transform group-hover:-translate-y-1 group-hover:scale-[1.02] shadow-sm">
                   <div className={`h-48 bg-gradient-to-br ${card.gradient}`} />
                   <div className="p-5">
-                    <h3 className="font-semibold text-zinc-900 dark:text-white">{card.title}</h3>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-300">{card.artist} • {card.cat}</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-slate-50">{card.title}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">{card.artist} • {card.cat}</p>
                     <div className="mt-4">
-                      <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} onClick={() => setModal(card.id)} className="px-4 py-2 rounded-lg border border-white/20 bg-white/10 dark:bg-white/5 text-zinc-900 dark:text-white">
+                      <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} onClick={() => setModal(card.id)} className="px-4 py-2 rounded-lg border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-900/70 text-slate-900 dark:text-slate-50 transition-colors">
                         View Details
                       </motion.button>
                     </div>
@@ -85,16 +85,16 @@ const Collections: React.FC = () => {
 
       <AnimatePresence>
         {modal !== null && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-            <motion.div initial={{ scale: 0.95, opacity: 0, y: 10 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 10 }} transition={{ duration: 0.25, ease: 'easeOut' }} className="max-w-lg w-full rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-white/10">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 dark:bg-black/70 p-4">
+            <motion.div initial={{ scale: 0.95, opacity: 0, y: 10 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 10 }} transition={{ duration: 0.25, ease: 'easeOut' }} className="max-w-lg w-full rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/70">
               <div className={`h-56 bg-gradient-to-br ${items[modal].gradient}`} />
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{items[modal].title}</h3>
-                <p className="mt-1 text-zinc-600 dark:text-zinc-300">By {items[modal].artist} • {items[modal].cat}</p>
-                <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300">High-resolution generative artwork with aurora-inspired palettes and subtle cybernetic motion. Mint-ready PNG/MP4 available upon request.</p>
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">{items[modal].title}</h3>
+                <p className="mt-1 text-slate-600 dark:text-slate-300">By {items[modal].artist} • {items[modal].cat}</p>
+                <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">High-resolution generative artwork with aurora-inspired palettes and subtle cybernetic motion. Mint-ready PNG/MP4 available upon request.</p>
                 <div className="mt-6 flex justify-end gap-3">
-                  <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} onClick={() => setModal(null)} className="px-4 py-2 rounded-lg border border-white/20 bg-white/10 dark:bg-white/5 text-zinc-900 dark:text-white">Close</motion.button>
-                  <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-400 via-cyan-400 to-fuchsia-500 text-white">Inquire</motion.button>
+                  <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} onClick={() => setModal(null)} className="px-4 py-2 rounded-lg border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-900/70 text-slate-900 dark:text-slate-50">Close</motion.button>
+                  <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-400 via-sky-500 to-fuchsia-500 text-white">Inquire</motion.button>
                 </div>
               </div>
             </motion.div>
